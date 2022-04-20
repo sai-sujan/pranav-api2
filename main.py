@@ -10,6 +10,7 @@ def main():
     if request.method == 'GET':
         df = pd.read_csv("SpotifyAudioFeaturesApril2019.csv")
         df = df.sort_values(by=['popularity'], ascending=True)
+        df['track_name'] = df['track_name'].str.replace('[^\x00-\x7F]+', 'chinese')
         df=df.head(10)
         df = df['track_name']
         print(df)
